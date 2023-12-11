@@ -1,34 +1,17 @@
 <template>
-  <TheHeader title="WhatEver"/>
-  <StoredResources :resources="resources" />
+  <TheHeader title="WhatEver" />
+  <TheResources />
 </template>
 
 <script>
-import StoredResources from '@/components/learningResources/StoredResources.vue';
 import TheHeader from './components/layouts/TheHeader.vue';
+import TheResources from './components/learningResources/TheResources.vue';
+
 export default {
-  data() {
-    return {
-      resources: [
-        {
-          id: 1,
-          title: 'Official Guide',
-          description: 'The official vue.js documentation',
-          link: 'https://vuejs.org',
-        },
-        {
-          id: 2,
-          title: 'Google',
-          description: 'You need to know how to google and find answers',
-          link: 'https://www.google.com',
-        },
-      ],
-    };
-  },
   components: {
-    StoredResources,
     TheHeader,
-},
+    TheResources,
+  },
 };
 </script>
 

@@ -11,7 +11,7 @@
 <script>
 import ResourceListItem from '@/components/learningResources/ResourceListItem.vue';
 export default {
-  props: {
+  inject: {
     resources: {
       type: Object,
       required: true,
