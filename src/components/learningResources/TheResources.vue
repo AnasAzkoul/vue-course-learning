@@ -54,11 +54,16 @@ export default {
   provide() {
     return {
       resources: this.resources,
+      AddNewResource: this.AddNewResource,
     };
   },
   methods: {
     setActiveTab(tabName) {
       this.activeTab = tabName;
+    },
+    addNewResource(resource) {
+      console.log(resource); 
+      this.resources.unshift(resource);
     },
   },
   components: {

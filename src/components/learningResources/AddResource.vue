@@ -1,13 +1,14 @@
 <template>
-  <div class="form-wrapper">
-    <form>
+  <BaseCard>
+    <form @submit="handleSubmit">
       <div class="form-control">
         <label for="title">Title</label>
         <input
           type="text"
           id="title"
+          name="title"
           placeholder="resource title"
-          v-model="formData.enteredTitle"
+          :ref="titleInput"
         />
       </div>
       <div class="form-control">
@@ -15,7 +16,9 @@
         <textarea
           type="text"
           id="desc"
+          name="desc"
           placeholder="write your description here"
+          :ref="descInput"
         />
       </div>
       <div class="form-control">
@@ -24,35 +27,36 @@
           type="url"
           id="link"
           placeholder="link to your resource"
+          name="link"
+          :ref="linkInput"
         />
       </div>
-      <BaseButton type="submit"
-        >Submit Resource</BaseButton
-      >
+      <BaseButton type="submit"> Submit Resource </BaseButton>
     </form>
-  </div>
+  </BaseCard>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      formData: {
-        enteredTitle: '',
-        enteredDesc: '',
-        enteredLink: '',
-      },
-    };
+  inject: ["addNewResource"],
+  methods: {
+    handleSubmit(event) {
+      event.preventDefault();
+
+      const newResource = {
+        id: new Date().toISOString(),
+        title: this.$refs.titleInput.value,
+        description: this.$refs.descInput.value,
+        link: this.$refs.linkInput.value,
+      };
+
+      this.addNewResource(newResource);
+    },
   },
 };
 </script>
 
 <style scoped>
-.form-wrapper {
-  max-width: 40rem;
-  margin: 0 auto;
-}
-
 label {
   font-weight: bold;
   display: block;
