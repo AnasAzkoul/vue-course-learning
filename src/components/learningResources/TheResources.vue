@@ -1,15 +1,7 @@
 <template>
   <BaseCard>
-    <BaseButton
-      @click="setActiveTab('StoredResources')"
-      :mode="setStoredResMode"
-      >Stored Resources</BaseButton
-    >
-    <BaseButton
-      @click="setActiveTab('AddResource')"
-      :mode="setAddResMode"
-      >Add Resource</BaseButton
-    >
+    <BaseButton @click="setActiveTab('StoredResources')" :mode="setStoredResMode">Stored Resources</BaseButton>
+    <BaseButton @click="setActiveTab('AddResource')" :mode="setAddResMode">Add Resource</BaseButton>
   </BaseCard>
   <component :is="activeTab" />
 </template>
@@ -54,7 +46,7 @@ export default {
   provide() {
     return {
       resources: this.resources,
-      AddNewResource: this.AddNewResource,
+      addNewResource: this.addNewResource,
     };
   },
   methods: {
@@ -62,8 +54,8 @@ export default {
       this.activeTab = tabName;
     },
     addNewResource(resource) {
-      console.log(resource); 
       this.resources.unshift(resource);
+      this.activeTab = 'StoredResources';
     },
   },
   components: {
