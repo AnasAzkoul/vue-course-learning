@@ -47,6 +47,7 @@ export default {
     return {
       resources: this.resources,
       addNewResource: this.addNewResource,
+      deleteResource: this.deleteResource,
     };
   },
   methods: {
@@ -57,6 +58,10 @@ export default {
       this.resources.unshift(resource);
       this.activeTab = 'StoredResources';
     },
+    deleteResource(id) {
+      this.resources = this.resources.filter(item => item.id !== id);
+      console.log('click'); 
+    }
   },
   components: {
     AddResource,

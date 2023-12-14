@@ -3,7 +3,7 @@
     <BaseCard>
       <header>
         <h3>{{ resource.title }}</h3>
-        <BaseButton mode="flat">Delete</BaseButton>
+        <BaseButton mode="flat" @click="handleDeleteResource(resource.id)">Delete</BaseButton>
       </header>
       <p>{{ resource.description }}</p>
       <nav>
@@ -24,6 +24,12 @@ export default {
   data() {
     return {};
   },
+  inject: ['deleteResource'],
+  methods: {
+    handleDeleteResource(id) {
+      this.deleteResource(id);
+    }
+  }
 };
 </script>
 
