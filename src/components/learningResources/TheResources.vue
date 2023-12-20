@@ -1,7 +1,17 @@
 <template>
   <BaseCard>
-    <BaseButton @click="setActiveTab('StoredResources')" :mode="setStoredResMode">Stored Resources</BaseButton>
-    <BaseButton @click="setActiveTab('AddResource')" :mode="setAddResMode">Add Resource</BaseButton>
+    <BaseButton
+      @click="setActiveTab('StoredResources')"
+      :mode="setStoredResMode"
+    >
+      Stored Resources
+    </BaseButton>
+    <BaseButton
+      @click="setActiveTab('AddResource')"
+      :mode="setAddResMode"
+    >
+      Add Resource
+    </BaseButton>
   </BaseCard>
   <component :is="activeTab" />
 </template>
@@ -59,9 +69,12 @@ export default {
       this.activeTab = 'StoredResources';
     },
     deleteResource(id) {
-      this.resources = this.resources.filter(item => item.id !== id);
-      console.log('click'); 
-    }
+      const resourceIndex =
+        this.resources.findIndex(
+          (item) => item.id === id,
+        );
+      this.resources.splice(resourceIndex, 1);
+    },
   },
   components: {
     AddResource,

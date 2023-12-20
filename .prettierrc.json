@@ -3,7 +3,10 @@
   "semi": true,
   "tabWidth": 2,
   "singleQuote": true,
-  "printWidth": 75,
+  "printWidth": 50,
   "trailingComma": "all",
-  "jsxBracketSameLine": false
+  "jsxBracketSameLine": false,
+  "[html]": {
+    "editor.foldingStrategy": "indentation"
+  }
 }

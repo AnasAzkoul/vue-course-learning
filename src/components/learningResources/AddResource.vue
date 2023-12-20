@@ -1,22 +1,46 @@
 <template>
-  <BaseDialog title="Invalid Input" v-if="isError" @close="confirmError">
+  <BaseDialog
+    title="Invalid Input"
+    v-if="isError"
+    @close="confirmError"
+  >
     This is not valid
   </BaseDialog>
   <BaseCard>
     <form @submit.prevent="handleSubmit">
       <div class="form-control">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" placeholder="resource title" ref="titleInput" />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="resource title"
+          ref="titleInput"
+        />
       </div>
       <div class="form-control">
         <label for="desc">Description</label>
-        <textarea type="text" id="desc" name="desc" placeholder="write your description here" ref="descInput" />
+        <textarea
+          type="text"
+          id="desc"
+          name="desc"
+          placeholder="write your description here"
+          ref="descInput"
+        />
       </div>
       <div class="form-control">
         <label for="link">Link</label>
-        <input type="url" id="link" placeholder="link to your resource" name="link" ref="linkInput" />
+        <input
+          type="url"
+          id="link"
+          placeholder="link to your resource"
+          name="link"
+          ref="linkInput"
+        />
       </div>
-      <BaseButton type="submit"> Submit Resource </BaseButton>
+      <BaseButton type="submit">
+        Submit Resource
+      </BaseButton>
     </form>
   </BaseCard>
 </template>
@@ -26,16 +50,20 @@ export default {
   data() {
     return {
       isError: false,
-    }
+    };
   },
-  inject: ["addNewResource"],
+  inject: ['addNewResource'],
   methods: {
     handleSubmit() {
       const title = this.$refs.titleInput.value;
       const description = this.$refs.descInput.value;
       const link = this.$refs.linkInput.value;
 
-      if (title.trim() === '' || description.trim() === '' || link.trim() === '') {
+      if (
+        title.trim() === '' ||
+        description.trim() === '' ||
+        link.trim() === ''
+      ) {
         this.isError = true;
         return;
       }
@@ -44,14 +72,14 @@ export default {
         id: new Date().toISOString(),
         title,
         description,
-        link
-      }
+        link,
+      };
 
       this.addNewResource(newResource);
     },
     confirmError() {
       this.isError = false;
-    }
+    },
   },
 };
 </script>
